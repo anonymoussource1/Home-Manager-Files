@@ -1,0 +1,35 @@
+; vim: ft=lisp
+(defwindow launcher
+	:monitor 0
+	:geometry (geometry
+		:x "0%"
+		:y "0%"
+		:width "100%"
+		:height "100%")
+	:stacking "fg"
+	:anchor "center center"
+	:focusable "exclusive"
+	(launcher))
+
+(defvar options "[]")
+
+(defwidget launcher []
+	(eventbox :onkeyrelease "scripts/onkeyrelease.sh {}"
+		(box :orientation "horizontal"
+			 :halign "fill"
+			 :valign "fill"
+			 :class "dim"
+			(box :orientation "vertical"
+				 :space-evenly "false"
+				 :halign "center"
+				 :valign "start"
+				 :hexpand true
+				 :class "block launcher-main"
+				(box :orientation "horizontal"
+					 :space-evenly "false"
+					"> "
+					(input :onaccept "eww close launcher && eww update options=\"[]\" && ./scripts/onaccept.sh {}"
+						   :onchange "eww update options=\"$(scripts/onchange.sh '{}')\""
+						   :timeout 1000))
+				(for option in options
+					 "${option.name}")))))

@@ -1,0 +1,128 @@
+; vim: ft=lisp
+(defwindow bar
+	:monitor 0
+	:geometry (geometry
+		:x "0%"
+		:y "0%"
+		:width "100%" 
+		:height "2%"
+		:anchor "top center")
+	:stacking "fg"
+	:exclusive true
+	(centerbox :orientation "horizontal"
+		 (first_section)
+		 (second_section)
+		 (third_section)))
+
+; Vars
+(defpoll battery :interval "2s" :initial "{\"status\":false,\"charge\":0}" `scripts/battery`)
+(defpoll wifi :interval "2s" :initial "0" `scripts/wifi`)
+(deflisten volume :initial "{\"is_mute\":false,\"vol\":0}" `scripts/volume`)
+(deflisten workspaces :initial "[]" `scripts/workspaces`)
+(defpoll date :interval "1s" :initial "00 // 00:00" `date +'%d // %R'`)
+
+; Sections
+(defwidget first_section []
+	(box :class "first-section"
+		 :orientation "horizontal"
+		 :halign "start"
+		 :hexpand true
+		 :space-evenly false
+		 (flair)
+		 (workspaces)))
+
+(defwidget second_section []
+	(box :class "second-section"
+		 :orientation "horizontal"
+		 :halign "center"
+		 :hexpand true
+		 :space-evenly false
+		 (date)))
+
+(defwidget third_section []
+	(box :class "third-section"
+		 :halign "end"
+		 :hexpand "true"
+		 :space-evenly false
+		 :spacing 2
+		(volume)
+		(battery)
+		(wifi) 
+		(ram)
+		(cpu)
+		(flair)))
+
+; First Section
+(defwidget workspaces []
+	(box :class "block workspaces"
+		 :orientation "horizontal"
+		 :halign "start"
+		 :hexpand true
+		 :spacing 20
+		 :space-evenly false
+		(for workspace in workspaces
+			 (label :class "workspace"
+					:text {workspace.focused ? "" : workspace.real ? "" : ""}))))
+
+; Second Section
+(defwidget date []
+	(label :class "block date"
+		   :text "${date}"))
+
+; Third Section
+(defwidget volume []
+	(box :class "block volume"
+		 :orientation "horizontal"
+		 :hexpand true
+		 :space-evenly false
+		 :spacing 10
+		(label :class "icon"
+			   :text {volume.is_mute ? "󰝟" : volume.vol >= 70 ? "󰕾" : volume.vol >= 35 ? "󰖀" : "󰕿"})
+		(label :text "${volume.vol}%")))
+
+(defwidget cpu []
+	(box :class "block cpu"
+		 :orientation "horizontal"
+		 :hexpand true
+		 :space-evenly false
+		 :spacing 15
+		(label :class "icon"
+			   :text "")
+		(label :text "${round(EWW_CPU.avg, 2)}")))
+
+(defwidget ram []
+	(box :class "block ram"
+		 :orientation "horizontal"
+		 :hexpand true
+		 :space-evenly false
+		 :spacing 15
+		(label :class "icon"
+			   :text "")
+		(label :text "${round(EWW_RAM.used_mem_perc, 2)}")))
+
+(defwidget wifi []
+	(box :class "block wifi"
+		 :orientation "horizontal"
+		 :hexpand true
+		 :space-evenly false
+		 :spacing 15
+		 (label :class "icon"
+				:text {wifi >= 80 ? "󰤨" : wifi >= 60 ? "󰤥" : wifi >= 40 ? "󰤢" : wifi >= 20 ? "󰤟" : "󰤯"})
+		 (label :text "${wifi}%")))
+
+(defwidget battery []
+	(box :class "block battery"
+		 :orientation "horizontal"
+		 :hexpand true
+		 :spacing 5
+		 :space-evenly false
+		 (label :class "icon"
+				:text {battery.status ? "󰂄" : round(battery.charge, 0) >= 90 ? "󰁹" : round(battery.charge, 0) >= 80 ? "󰂁" : round(battery.charge, 0) >= 70 ? "󰂁" : round(battery.charge, 0) >= 60 ? "󰂀" : round(battery.charge, 0) >= 50 ? "󰁿" : round(battery.charge, 0) >= 40 ? "󰁾" : round(battery.charge, 0) >= 30 ? "󰁽" : round(battery.charge, 0) >= 20 ? "󰁼" : round(battery.charge, 0) >= 10 ? "󰁻" : "󰁺"})
+		 (label :text "${battery.charge}%")))
+
+; Misc
+(defwidget flair []
+	(image :class "flair"
+		   :path "images/flair.svg"
+		   :image-height 20
+		   :fill-svg "#336631"))

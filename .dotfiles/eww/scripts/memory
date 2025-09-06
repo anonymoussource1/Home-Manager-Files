@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+awk '
+	/MemTotal:/ {
+		total=$2
+	}
+	/MemAvailable:/ {
+		avail=$2
+	}
+	END {
+		used=total-avail
+		percent=used/total*100
+		printf("%.2f%%\n", percent)
+			
+		if (percent > 80) {
+			print "#FF0000"
+		} else if (percent > 60) {
+			print "#FFAE00"
+		} else if (percent > 40) {
+			print "#FFF600"
+		}
+	}
+' /proc/meminfo

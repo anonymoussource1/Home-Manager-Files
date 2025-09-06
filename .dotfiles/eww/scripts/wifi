@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+nmcli -t -f IN-USE,SIGNAL d wifi list | awk -F':' '/\*/ { print $2 }'

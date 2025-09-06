@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Foot",
+    "path": "/run/current-system/sw/share/applications/foot.desktop",
+    "exec": "foot"
+  },
+  {
+    "name": "Foot Client",
+    "path": "/run/current-system/sw/share/applications/footclient.desktop",
+    "exec": "footclient"
+  },
+  {
+    "name": "Foot Server",
+    "path": "/run/current-system/sw/share/applications/foot-server.desktop",
+    "exec": "foot --server"
+  },
+  {
+    "name": "GNU Image Manipulation Program",
+    "path": "/home/danielkurz/.nix-profile/share/applications/gimp.desktop",
+    "exec": "gimp-3.0 "
+  },
+  {
+    "name": "GVim",
+    "path": "/run/current-system/sw/share/applications/gvim.desktop",
+    "exec": "gvim -f "
+  },
+  {
+    "name": "KDE Wallet Service",
+    "path": "/home/danielkurz/.nix-profile/share/applications/org.kde.ksecretd.desktop",
+    "exec": "ksecretd"
+  },
+  {
+    "name": "KIO",
+    "path": "/home/danielkurz/.nix-profile/share/applications/org.kde.kiod6.desktop",
+    "exec": "kiod6"
+  },
+  {
+    "name": "KTelnetService",
+    "path": "/home/danielkurz/.nix-profile/share/applications/ktelnetservice6.desktop",
+    "exec": "ktelnetservice6 "
+  },
+  {
+    "name": "Manage Printing",
+    "path": "/home/danielkurz/.nix-profile/share/applications/cups.desktop",
+    "exec": "xdg-open http://localhost:631/"
+  },
+  {
+    "name": "NixOS Manual",
+    "path": "/run/current-system/sw/share/applications/nixos-manual.desktop",
+    "exec": "nixos-help"
+  },
+  {
+    "name": "Okular",
+    "path": "/home/danielkurz/.nix-profile/share/applications/okularApplication_kimgio.desktop",
+    "exec": "okular "
+  },
+  {
+    "name": "Portal",
+    "path": "/run/current-system/sw/share/applications/xdg-desktop-portal-gtk.desktop",
+    "exec": "/nix/store/54gybciaf60s8y9xfjzs9lv2hxr3x4y8-xdg-desktop-portal-gtk-1.15.3/libexec/xdg-desktop-portal-gtk"
+  },
+  {
+    "name": "Spotify",
+    "path": "/var/lib/flatpak/exports/share/applications/com.spotify.Client.desktop",
+    "exec": "flatpak run --branch=stable --arch=x86_64 --command=spotify --file-forwarding com.spotify.Client @@u @@"
+  },
+  {
+    "name": "Steam",
+    "path": "/run/current-system/sw/share/applications/steam.desktop",
+    "exec": "steam "
+  },
+  {
+    "name": "Sway",
+    "path": "/home/danielkurz/.nix-profile/share/wayland-sessions/sway.desktop",
+    "exec": "sway"
+  },
+  {
+    "name": "Vim",
+    "path": "/run/current-system/sw/share/applications/vim.desktop",
+    "exec": "vim "
+  },
+  {
+    "name": "Xwayland",
+    "path": "/home/danielkurz/.nix-profile/share/applications/org.freedesktop.Xwayland.desktop",
+    "exec": "/nix/store/c1d1c0f03glhqzr4h72cmzpy3ilrymjr-xwayland-24.1.8/bin/Xwayland -decorate -displayfd 1"
+  },
+  {
+    "name": "Zen Browser",
+    "path": "/var/lib/flatpak/exports/share/applications/app.zen_browser.zen.desktop",
+    "exec": "flatpak run --branch=stable --arch=x86_64 --command=launch-script.sh --file-forwarding app.zen_browser.zen @@u @@"
+  },
+  {
+    "name": "kitty",
+    "path": "/run/current-system/sw/share/applications/kitty.desktop",
+    "exec": "kitty"
+  },
+  {
+    "name": "kitty URL Launcher",
+    "path": "/run/current-system/sw/share/applications/kitty-open.desktop",
+    "exec": "kitty +open "
+  }
+]
