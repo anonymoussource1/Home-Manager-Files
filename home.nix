@@ -46,7 +46,7 @@
 		(flameshot.override { enableWlrSupport = true; })
 		(eww.overrideAttrs (oldAttrs: rec {
 			patches = [
-				.dotfiles/eww/patches/patch.diff
+				~/.config/home-manager/.dotfiles/eww/patches/patch.diff
 			];
 		}))
 	];

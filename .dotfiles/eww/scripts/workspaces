@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-./format_workspaces $(swaymsg -r -t get_workspaces | jq -c '[.[] | {num, focused}]')
+~/.config/eww/scripts/format_workspaces $(swaymsg -r -t get_workspaces | jq -c '[.[] | {num, focused}]')
 swaymsg -m -t subscribe '["workspace"]' | grep --line-buffered "\"change\"" | while read EVENT; do
-	./format_workspaces $(swaymsg -r -t get_workspaces | jq -c '[.[] | {num, focused}]')
+	~/.config/eww/scripts/format_workspaces $(swaymsg -r -t get_workspaces | jq -c '[.[] | {num, focused}]')
 done

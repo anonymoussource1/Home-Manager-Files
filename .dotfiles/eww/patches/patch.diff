@@ -1,22 +1,8 @@
 diff --git a/crates/eww/src/widgets/widget_definitions.rs b/crates/eww/src/widgets/widget_definitions.rs
-index 8284d0fa..569ca343 100644
+index 8284d0f..92c526e 100644
 --- a/crates/eww/src/widgets/widget_definitions.rs
 +++ b/crates/eww/src/widgets/widget_definitions.rs
-@@ -927,13 +927,6 @@ fn build_gtk_event_box(bargs: &mut BuilderArgs) -> Result<gtk::EventBox> {
-                 );
-                 gtk_widget.drag_source_set_target_list(Some(&TargetList::new(&[target_entry])));
-             }
--
--            connect_signal_handler!(gtk_widget, if !dragvalue.is_empty(), gtk_widget.connect_drag_data_get(move |_, _, data, _, _| {
--                match dragtype {
--                    DragEntryType::File => data.set_uris(&[&dragvalue]),
--                    DragEntryType::Text => data.set_text(&dragvalue),
--                };
--            }));
-         },
-         prop(
-             // @prop timeout - timeout of the command. Default: "200ms"
-@@ -953,9 +946,20 @@ fn build_gtk_event_box(bargs: &mut BuilderArgs) -> Result<gtk::EventBox> {
+@@ -953,9 +953,20 @@ fn build_gtk_event_box(bargs: &mut BuilderArgs) -> Result<gtk::EventBox> {
                      3 => run_command(timeout, &onrightclick, &[] as &[&str]),
                      _ => {},
                  }
@@ -37,22 +23,3 @@ index 8284d0fa..569ca343 100644
      });
      Ok(gtk_widget)
  }
-@@ -1060,7 +1064,7 @@ fn build_gtk_label(bargs: &mut BuilderArgs) -> Result<gtk::Label> {
-         // @prop lines - maximum number of lines to display (only works when `limit-width` has a value). A value of -1 (default) disables the limit.
-         prop(lines: as_i32 = -1) {
-             gtk_widget.set_lines(lines);
--        }
-+        },
-     });
-     Ok(gtk_widget)
- }
-diff --git a/crates/yuck/src/parser/parser.lalrpop b/crates/yuck/src/parser/parser.lalrpop
-index 22c47605..8e1931d0 100644
---- a/crates/yuck/src/parser/parser.lalrpop
-+++ b/crates/yuck/src/parser/parser.lalrpop
-@@ -66,3 +66,4 @@ Bool: String = {
- 
- 
- // vim:shiftwidth=4
-+// vim:ft=rust
-
