@@ -53,7 +53,9 @@
 		
 	# Home Manager is pretty good at managing dotfiles. The primary way to manage
 	# plain files is through 'home.file'.
-	home.file = {
+	home.file = let
+		zen_profile = builtins.getEnv "ZEN_PROFILE";
+	in {
 		# # Building this configuration will create a copy of 'dotfiles/screenrc' in
 		# # the Nix store. Activating the configuration will then make '~/.screenrc' a
 		# # symlink to the Nix store copy.
@@ -67,12 +69,15 @@
 		".config/eww".source = .dotfiles/eww;
 		".config/kitty".source = .dotfiles/kitty;
 		".config/vim".source = .dotfiles/vim;
+		".bash_prompt".source = .dotfiles/bash/.bash_prompt;
+		".var/app/app.zen_browser.zen/.zen/${zen_profile}/chrome/userChrome.css".source = .dotfiles/zen/userChrome.css;
 	};
 	
 	programs.bash = {
 		enable = true;
 		profileExtra = ''
 			. ~/.bash_prompt
+			export ZEN_PROFILE=$(cat ~/.config/home-manager/.dotfiles/zen/zen_profile)
 			sway
 		'';
 	};

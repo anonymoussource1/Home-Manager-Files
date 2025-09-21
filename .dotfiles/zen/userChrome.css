@@ -1,0 +1,25 @@
+#zen-browser-background {
+  background-color: #4A4A45 !important;
+}
+
+#zen-sidebar-top-buttons-customization-target, #zen-sidebar-foot-buttons {
+  color: #336631 !important;
+}
+
+.pinned-tabs-container-separator {
+  background-color: #336631 !important;
+}
+
+/*#browser {
+  margin-right: 7px;
+  margin-bottom: 7px;
+  box-shadow: 7px 7px #336631;
+}*/
+
+#urlbar-background, .zen-essentials-container > .tabbrowser-tab > .tab-stack > .tab-background  {
+  box-shadow: 2px 2px #336631 !important;
+}
+
+.browserContainer > findbar, .findbar-textbox {
+  background-color: #2B2B27 !important;
+}
