@@ -44,6 +44,11 @@
 		cowsay
 		kdePackages.okular
 		(flameshot.override { enableWlrSupport = true; })
+		(eww.overrideAttrs (oldAttrs: rec {
+			patches = [
+				.dotfiles/eww/patches/patch.diff
+			];
+		}))
 	];
 		
 	# Home Manager is pretty good at managing dotfiles. The primary way to manage
