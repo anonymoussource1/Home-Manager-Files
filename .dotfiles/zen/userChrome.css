@@ -18,6 +18,7 @@
 
 #urlbar-background, .zen-essentials-container > .tabbrowser-tab > .tab-stack > .tab-background  {
   box-shadow: 2px 2px #336631 !important;
+  background-color: #2B2B27 !important;
 }
 
 .browserContainer > findbar, .findbar-textbox {
