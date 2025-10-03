@@ -8,3 +8,7 @@ set noexpandtab
 set cursorline
 set nowrap
 set wildmenu
+
+map j gj
+map k gk
+map $ g$
